@@ -1,4 +1,3 @@
-
 package br.pro.delfino.drogaria.domain;
 
 import javax.persistence.Column;

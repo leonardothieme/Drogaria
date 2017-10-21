@@ -51,7 +51,7 @@ public class ProdutoBean implements Serializable {
 	public void listar() {
 		try {
 			ProdutoDAO produtoDAO = new ProdutoDAO();
-			produtos = produtoDAO.listar();
+			produtos = produtoDAO.listar("descricao");
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os produtos");
 			erro.printStackTrace();
@@ -63,9 +63,9 @@ public class ProdutoBean implements Serializable {
 			produto = new Produto();
 
 			FabricanteDAO fabricanteDAO = new FabricanteDAO();
-			fabricantes = fabricanteDAO.listar();
+			fabricantes = fabricanteDAO.listar("descricao");
 		} catch (RuntimeException erro) {
-			Messages.addFlashGlobalError("Ocorreu um erro ao tentar gerar um novo produto");
+			Messages.addGlobalError("Ocorreu um erro ao tentar gerar um novo produto");
 			erro.printStackTrace();
 		}
 	}

@@ -23,16 +23,35 @@ public class Produto extends GenericDomain {
 	@JoinColumn(nullable = false)
 	private Fabricante fabricante;
 
-	public String getDescricao() {return descricao;}
-	public Short getQuantidade() {return quantidade;}
-	public BigDecimal getPreco() {return preco;}
-	public Fabricante getFabricante() {return fabricante;}
-	
-	
-	public void setDescricao(String descricao)  	 {this.descricao = descricao;}
-	public void setQuantidade(Short quantidade) 	 {this.quantidade = quantidade;}
-	public void setPreco(BigDecimal preco)           {this.preco = preco;}
-	public void setFabricante(Fabricante fabricante) {this.fabricante = fabricante;}
+	public String getDescricao() {
+		return descricao;
+	}
 
-	
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Short getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Short quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
+	}
+
+	public Fabricante getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(Fabricante fabricante) {
+		this.fabricante = fabricante;
+	}
 }

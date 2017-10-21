@@ -47,5 +47,3 @@ public class Funcionario extends GenericDomain {
 		this.pessoa = pessoa;
 	}
 }
-
-    

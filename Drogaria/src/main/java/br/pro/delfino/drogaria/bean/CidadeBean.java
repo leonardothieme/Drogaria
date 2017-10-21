@@ -19,18 +19,9 @@ import br.pro.delfino.drogaria.domain.Estado;
 @ManagedBean
 @ViewScoped
 public class CidadeBean implements Serializable {
-
-	private List<Cidade> cidades;
 	private Cidade cidade;
+	private List<Cidade> cidades;
 	private List<Estado> estados;
-
-	public List<Estado> getEstados() {
-		return estados;
-	}
-
-	public void setEstados(List<Estado> estados) {
-		this.estados = estados;
-	}
 
 	public Cidade getCidade() {
 		return cidade;
@@ -48,89 +39,81 @@ public class CidadeBean implements Serializable {
 		this.cidades = cidades;
 	}
 
-	public void salvar() {
-		
-		try {
-			CidadeDAO cidadeDAO = new CidadeDAO();
-			cidadeDAO.merge(cidade);
-			Messages.addGlobalInfo("Cidade salva com sucesso"); 
-			
-			cidade = new Cidade();
-			
-			EstadoDAO estadoDAO = new EstadoDAO();
-			estados = estadoDAO.listar();
-			cidades = cidadeDAO.listar();
-			
-			
-		}catch(RuntimeException erro) {
-			Messages.addFlashGlobalError("Ocorreu um erro o ao tentar salvar uma nova cidade");
-			erro.printStackTrace();
-		
-		}
-		}
-		
+	public List<Estado> getEstados() {
+		return estados;
+	}
+
+	public void setEstados(List<Estado> estados) {
+		this.estados = estados;
+	}
+
 	@PostConstruct
 	public void listar() {
 		try {
 			CidadeDAO cidadeDAO = new CidadeDAO();
-			cidades = cidadeDAO.listar();
-
+			cidades = cidadeDAO.listar("nome");
 		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar listar as cidades");
 			erro.printStackTrace();
 		}
-
 	}
 
 	public void novo() {
-		
 		try {
 			cidade = new Cidade();
-		EstadoDAO estadoDAO = new EstadoDAO();
-		estados = estadoDAO.listar("nome"); 
-		
-	} catch (RuntimeException erro) {
-		Messages.addFlashGlobalError("Ocorreu um erro ao tentar gerar uma nova cidade");
-		erro.printStackTrace();
+
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estados = estadoDAO.listar("nome");
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao gerar uma nova cidade");
+			erro.printStackTrace();
+		}
 	}
-		
+
+	public void salvar() {
+		try {
+			CidadeDAO cidadeDAO = new CidadeDAO();
+			cidadeDAO.merge(cidade);
+
+			cidade = new Cidade();
+
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estados = estadoDAO.listar();
+
+			cidades = cidadeDAO.listar();
+
+			Messages.addGlobalInfo("Cidade salva com sucesso");
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar salvar uma nova cidade");
+			erro.printStackTrace();
+		}
 	}
-	
-	
+
 	public void excluir(ActionEvent evento) {
 		try {
 			cidade = (Cidade) evento.getComponent().getAttributes().get("cidadeSelecionada");
-			
+
 			CidadeDAO cidadeDAO = new CidadeDAO();
 			cidadeDAO.excluir(cidade);
-			
-			cidades = cidadeDAO.listar();
-			
-			Messages.addFlashGlobalInfo("Cidade removido com sucesso!");
-			
-			} catch (RuntimeException erro) {
-				Messages.addGlobalError("Ocorreu um erro ao tentar remover a cidade");
-				erro.printStackTrace();
 
-			}
-		
-			
+			cidades = cidadeDAO.listar();
+
+			Messages.addGlobalInfo("Cidade removida com sucesso");
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar remover a cidade");
+			erro.printStackTrace();
 		}
-		
-		public void editar(ActionEvent evento) {
-			try {
+	}
+	
+	public void editar(ActionEvent evento){
+		try {
 			cidade = (Cidade) evento.getComponent().getAttributes().get("cidadeSelecionada");
 
 			EstadoDAO estadoDAO = new EstadoDAO();
-			estados = estadoDAO.listar(); 
-			
+			estados = estadoDAO.listar();
 		} catch (RuntimeException erro) {
-			Messages.addFlashGlobalError("Ocorreu um erro ao tentar editar uma cidade");
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar uma cidade");
 			erro.printStackTrace();
-		}
-			
-	
+		}	
 	}
 }
-	
-

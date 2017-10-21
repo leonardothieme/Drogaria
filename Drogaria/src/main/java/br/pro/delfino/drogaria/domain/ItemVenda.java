@@ -56,5 +56,3 @@ public class ItemVenda extends GenericDomain {
 		this.funcionario = funcionario;
 	}
 }
-
-    
