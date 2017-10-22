@@ -12,6 +12,12 @@
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
+	
+		<!-- Tema Primefaces -->
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>blitzer</param-value>
+	</context-param>
 
 
 	<!-- Configuração do JSF -->
@@ -25,8 +31,8 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
- <!-- Carregamento do Hibernate -->
-    <listener>
-    	<listener-class>br.pro.delfino.drogaria.util.HibernateContexto</listener-class>
+	<!-- Carregamento do Hibernate -->
+	<listener>
+		<listener-class>br.pro.delfino.drogaria.util.HibernateContexto</listener-class>
 	</listener>
 </web-app>
