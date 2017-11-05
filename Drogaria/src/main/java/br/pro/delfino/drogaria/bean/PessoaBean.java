@@ -98,6 +98,21 @@ public class PessoaBean implements Serializable {
 	}
 
 	public void editar(ActionEvent evento) {
+		try {
+			pessoa = (Pessoa)evento.getComponent().getAttributes().get("pessoaSelecionada");
+			
+			estado = pessoa.getCidade().getEstado();
+			
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estadoDAO.listar("nome");
+			
+			CidadeDAO cidadeDAO = new CidadeDAO();
+			cidades = cidadeDAO.buscarPorEstado(estado.getCodigo());
+		}catch(RuntimeException error) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar selecionar uma pessoa");
+			
+		}
+		
 
 	}
 
