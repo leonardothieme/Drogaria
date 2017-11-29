@@ -23,6 +23,9 @@ public class Produto extends GenericDomain {
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Fabricante fabricante;
+	
+	@Transient
+	private String caminho;
 
 	public String getDescricao() {
 		return descricao;
@@ -55,8 +58,6 @@ public class Produto extends GenericDomain {
 	public void setFabricante(Fabricante fabricante) {
 		this.fabricante = fabricante;
 	}
-	@Transient
-	private String caminho;
 	
 	public String getCaminho() {
 		return caminho;

@@ -6,19 +6,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
-import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
-import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -26,8 +21,6 @@ import br.pro.delfino.drogaria.dao.FabricanteDAO;
 import br.pro.delfino.drogaria.dao.ProdutoDAO;
 import br.pro.delfino.drogaria.domain.Fabricante;
 import br.pro.delfino.drogaria.domain.Produto;
-import br.pro.delfino.drogaria.util.HibernateUtil;
-
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -87,7 +80,7 @@ public class ProdutoBean implements Serializable {
 	public void editar(ActionEvent evento) {
 		try {
 			produto = (Produto) evento.getComponent().getAttributes().get("produtoSelecionado");
-			produto.setCaminho("C:/Users/Leonardo Thieme/Documents/Projetos/Drogaria - Delfino Web/Uploads/" + produto.getCodigo() + ".png");
+			produto.setCaminho("C:/Programação Web com Java/Uploads/" + produto.getCodigo() + ".png");
 
 			FabricanteDAO fabricanteDAO = new FabricanteDAO();
 			fabricantes = fabricanteDAO.listar();
@@ -98,17 +91,17 @@ public class ProdutoBean implements Serializable {
 	}
 
 	public void salvar() {
-		try {
-			if (produto.getCaminho() == null) {
+		try {			
+			if(produto.getCaminho() == null){
 				Messages.addGlobalError("O campo foto é obrigatório");
 				return;
 			}
-
+			
 			ProdutoDAO produtoDAO = new ProdutoDAO();
 			Produto produtoRetorno = produtoDAO.merge(produto);
-
+			
 			Path origem = Paths.get(produto.getCaminho());
-			Path destino = Paths.get("C:/Users/Leonardo Thieme/Documents/Projetos/Drogaria - Delfino Web/Uploads/" + produtoRetorno.getCodigo() + ".png");
+			Path destino = Paths.get("C:/Programação Web com Java/Uploads/" + produtoRetorno.getCodigo() + ".png");
 			Files.copy(origem, destino, StandardCopyOption.REPLACE_EXISTING);
 
 			produto = new Produto();
@@ -131,8 +124,8 @@ public class ProdutoBean implements Serializable {
 
 			ProdutoDAO produtoDAO = new ProdutoDAO();
 			produtoDAO.excluir(produto);
-
-			Path arquivo = Paths.get("C:/Users/Leonardo Thieme/Documents/Projetos/Drogaria - Delfino Web/Uploads/" + produto.getCodigo() + ".png");
+			
+			Path arquivo = Paths.get("C:/Programação Web com Java/Uploads/" + produto.getCodigo() + ".png");
 			Files.deleteIfExists(arquivo);
 
 			produtos = produtoDAO.listar();
@@ -150,13 +143,11 @@ public class ProdutoBean implements Serializable {
 			Path arquivoTemp = Files.createTempFile(null, null);
 			Files.copy(arquivoUpload.getInputstream(), arquivoTemp, StandardCopyOption.REPLACE_EXISTING);
 			produto.setCaminho(arquivoTemp.toString());
-
+			
 			Messages.addGlobalInfo("Upload realizado com sucesso");
 		} catch (IOException erro) {
 			Messages.addGlobalInfo("Ocorreu um erro ao tentar realizar o upload de arquivo");
 			erro.printStackTrace();
 		}
 	}
-
-	
 }

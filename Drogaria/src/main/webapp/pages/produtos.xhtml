@@ -17,36 +17,29 @@
 				paginator="true" value="#{produtoBean.produtos}" var="produto"
 				rows="5">
 				<f:facet name="header">
-					<p:commandButton icon="ui-icon-plus"
-						actionListener="#{produtoBean.novo}"
+					<p:commandButton value="Novo" actionListener="#{produtoBean.novo}"
 						oncomplete="PF('dialogo').show();"
 						update=":mensagem :formCadastro:painel">
 						<f:actionListener
 							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
-
-					<p:commandButton icon="ui-icon-print"
-						actionListener="#{produtoBean.imprimir}" />
 				</f:facet>
 
-				<p:column headerText="Descrição" filterBy="#{produto.descricao}"
-					filterMatchMode="contains" sortBy="#{produto.descricao}">
+				<p:column headerText="Descrição">
 					<h:outputText value="#{produto.descricao}" />
 				</p:column>
 
-				<p:column headerText="Quantidade" sortBy="#{produto.quantidade}">
+				<p:column headerText="Quantidade">
 					<h:outputText value="#{produto.quantidade}" />
 				</p:column>
 
-				<p:column headerText="Preço" sortBy="#{produto.preco}">
+				<p:column headerText="Preço">
 					<h:outputText value="#{produto.preco}">
 						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Fabricante"
-					filterBy="#{produto.fabricante.descricao}"
-					filterMatchMode="contains" sortBy="#{produto.fabricante.descricao}">
+				<p:column headerText="Fabricante">
 					<h:outputText value="#{produto.fabricante.descricao}" />
 				</p:column>
 
@@ -63,7 +56,7 @@
 						actionListener="#{produtoBean.editar}"
 						update=":mensagem :formCadastro:painel"
 						oncomplete="PF('dialogo').show();">
-						<f:attribute name="produtoSelecionado" value="#{produto}" />
+						<f:attribute name="produtoSelecionado" value="#{produto}" />		
 						<f:actionListener
 							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
@@ -118,15 +111,10 @@
 						itemValue="#{fabricante}" itemLabel="#{fabricante.descricao}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel for="upload" value="Upload:" />
-				<p:fileUpload id="upload" mode="advanced"
-					fileUploadListener="#{produtoBean.upload}"
-					update=":mensagem :formCadastro:foto" auto="true" />
-				
 				<p:outputLabel for="foto" value="Foto:" />
-				<p:graphicImage id="foto" value="#{imagemBean.foto}" width="200" height="200">
-					<f:param name="caminho" value="#{produtoBean.produto.caminho}" />
-				</p:graphicImage>
+				<p:fileUpload id="foto" mode="advanced"
+					fileUploadListener="#{produtoBean.upload}" update=":mensagem"
+					auto="true" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
