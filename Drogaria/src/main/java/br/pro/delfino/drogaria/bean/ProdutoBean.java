@@ -6,13 +6,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
+import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
@@ -21,6 +25,11 @@ import br.pro.delfino.drogaria.dao.FabricanteDAO;
 import br.pro.delfino.drogaria.dao.ProdutoDAO;
 import br.pro.delfino.drogaria.domain.Fabricante;
 import br.pro.delfino.drogaria.domain.Produto;
+import br.pro.delfino.drogaria.util.HibernateUtil;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -149,5 +158,21 @@ public class ProdutoBean implements Serializable {
 			Messages.addGlobalInfo("Ocorreu um erro ao tentar realizar o upload de arquivo");
 			erro.printStackTrace();
 		}
+	}
+	
+	public void imprimir() {
+		try {
+			String caminho = Faces.getRealPath("/reports/produtos.jasper");
+			Map<String, Object> parametros = new HashMap<>();
+			Connection conexao = HibernateUtil.getConexao();
+			
+			JasperPrint relatorio = JasperFillManager.fillReport(caminho, parametros, conexao);
+			JasperPrintManager.printReport(relatorio, true);
+			
+		} catch (JRException erro) {
+			Messages.addGlobalInfo("Ocorreu um erro ao tentar realizar a impressao do relatório");
+			erro.printStackTrace();
+		}
+		
 	}
 }
