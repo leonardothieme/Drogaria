@@ -17,7 +17,7 @@ public class HibernateUtil {
 		return fabricaDeSessoes;
 	}
 	
-	public static Connection getConexao() {
+	public static Connection getConexao(){
 		Session sessao = fabricaDeSessoes.openSession();
 		
 		Connection conexao = sessao.doReturningWork(new ReturningWork<Connection>() {
@@ -28,7 +28,6 @@ public class HibernateUtil {
 		});
 		
 		return conexao;
-		
 	}
 
 	private static SessionFactory criarFabricaDeSessoes() {

@@ -72,7 +72,7 @@ public class EstadoBean implements Serializable {
 
 			EstadoDAO estadoDAO = new EstadoDAO();
 			estadoDAO.excluir(estado);
-			
+
 			estados = estadoDAO.listar();
 
 			Messages.addGlobalInfo("Estado removido com sucesso");
@@ -81,8 +81,8 @@ public class EstadoBean implements Serializable {
 			erro.printStackTrace();
 		}
 	}
-	
-	public void editar(ActionEvent evento){
+
+	public void editar(ActionEvent evento) {
 		estado = (Estado) evento.getComponent().getAttributes().get("estadoSelecionado");
 	}
 }

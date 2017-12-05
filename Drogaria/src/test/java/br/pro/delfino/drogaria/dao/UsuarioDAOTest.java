@@ -1,7 +1,6 @@
 package br.pro.delfino.drogaria.dao;
 
-import java.util.List;
-
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -9,107 +8,43 @@ import br.pro.delfino.drogaria.domain.Pessoa;
 import br.pro.delfino.drogaria.domain.Usuario;
 
 public class UsuarioDAOTest {
-	@Ignore
 	@Test
+	@Ignore
+
 	public void salvar(){
-		Long codigoPessoa = 2L;
-		
 		PessoaDAO pessoaDAO = new PessoaDAO();
-		Pessoa pessoa = pessoaDAO.buscar(codigoPessoa);	
+		Pessoa pessoa = pessoaDAO.buscar(1L);
 		
+		System.out.println("Pessoa Encontrada");
+		System.out.println("Nome: " + pessoa.getNome());
+		System.out.println("CPF: " + pessoa.getCpf());
 		
 		Usuario usuario = new Usuario();
 		usuario.setAtivo(true);
-		usuario.setSenha("14");
-		usuario.setTipo('G');
 		usuario.setPessoa(pessoa);
+		usuario.setSenhaSemCriptografia("q1w2e3r4");
 		
+		SimpleHash hash = new SimpleHash("md5", usuario.getSenhaSemCriptografia());
+		usuario.setSenha(hash.toHex());
+		
+		usuario.setTipo('B');
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		usuarioDAO.salvar(usuario);
 		
-		System.out.println("Salvo com sucesso");
-		}
-	
-@Ignore
-@Test
-	public void listar(){
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		
-		List<Usuario> resultado = usuarioDAO.listar();
-			
-		for(Usuario usuario : resultado ){
-			System.out.println("Codigo: " + usuario.getCodigo());
-			System.out.println("Ativo: " + usuario.getAtivo());
-			System.out.println("Senha: " + usuario.getSenha());
-			System.out.println("Tipo: "  + usuario.getTipo());
-			System.out.println("Pessoa: " + usuario.getPessoa().getNome());
-			
-		}
-				
+		System.out.println("Usuário salvo com sucesso.");
 	}
-
-
-@Ignore
-@Test
-	public void buscar(){
-		Long codigo = 2L;
+	
+	@Test
+	public void autenticar() {
+		String cpf ="323.333.333-33";
+		String senha = "q1w2e3r4";	
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		Usuario usuario = usuarioDAO.buscar(codigo);
-
-		System.out.println("Codigo: " + usuario.getCodigo());
-		System.out.println("Ativo: " + usuario.getAtivo());
-		System.out.println("Senha: " + usuario.getSenha());
-		System.out.println("Tipo: "  + usuario.getTipo());
-		System.out.println("Pessoa: " + usuario.getPessoa().getNome());
+		Usuario usuario = usuarioDAO.autenticar(cpf, senha);
+		
+		System.out.println("Usuario Autenticado: " + usuario);
+		
 		
 	}
-@Ignore
-@Test	
-public void excluir (){
-	Long codigo = 2L;
-	
-	UsuarioDAO usuarioDAO = new UsuarioDAO();
-	Usuario usuario = usuarioDAO.buscar(codigo);
-
-	
-	usuarioDAO.excluir(usuario);
-	
-	
-	System.out.println("Codigo: " + usuario.getCodigo());
-	System.out.println("Ativo: " + usuario.getAtivo());
-	System.out.println("Senha: " + usuario.getSenha());
-	System.out.println("Tipo: "  + usuario.getTipo());
-	System.out.println("Pessoa: " + usuario.getPessoa().getNome());
-	
-	
-	System.out.println("Excluido com sucesso!");
-}
-@Ignore
-
-@Test
-public void editar(){
-	
-	Long codigoUsuario = 1L;
-	Long codigoPessoa = 2L;
-	
-	PessoaDAO pessoaDAO = new PessoaDAO();
-	Pessoa pessoa = pessoaDAO.buscar(codigoPessoa);
-	
-	UsuarioDAO usuarioDAO = new UsuarioDAO();
-	Usuario usuario = usuarioDAO.buscar(codigoUsuario);
-	
-	usuario.setSenha("ASKD");
-	
-	usuario.setPessoa(pessoa);
-	usuarioDAO.editar(usuario);
-	System.out.println("editado com sucesso");
-	
-	
-	
-}
-
-
-
-}
+}	
