@@ -31,9 +31,9 @@
 		</plugins>
 	</build>
 
-	<!-- Repositorios -->
+	<!-- Repositórios -->
 	<repositories>
-		<!-- Primefaces -->
+		<!-- PrimeFaces -->
 		<repository>
 			<id>prime-repo</id>
 			<name>PrimeFaces Maven Repository</name>
@@ -41,7 +41,6 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
-
 
 	<!-- Dependências -->
 	<dependencies>
@@ -56,10 +55,8 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.44</version>
+			<version>5.1.36</version>
 		</dependency>
-
-
 
 		<!-- JUnit -->
 		<dependency>
@@ -75,34 +72,32 @@
 			<version>2.2.12</version>
 		</dependency>
 
-		<!-- Primefaces -->
+		<!-- PrimeFaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>5.2</version>
 		</dependency>
 
-		<!-- Omnifaces -->
+		<!-- PrimeFaces Themes -->
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+
+		<!-- OmniFaces -->
 		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
 			<version>1.11</version>
 		</dependency>
 
-
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- Primefaces temas -->
-		<dependency>
-			<groupId>org.primefaces.themes</groupId>
-			<artifactId>all-themes</artifactId>
-			<version>1.0.10</version>
 		</dependency>
 
 		<!-- Jersey -->

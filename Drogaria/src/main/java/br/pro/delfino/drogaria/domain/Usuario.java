@@ -2,9 +2,13 @@ package br.pro.delfino.drogaria.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
+
+import br.pro.delfino.drogaria.enumeracao.TipoUsuario;
 
 @SuppressWarnings("serial")
 @Entity
@@ -14,9 +18,10 @@ public class Usuario extends GenericDomain {
 	
 	@Transient
 	private String senhaSemCriptografia;
-
+	
 	@Column(nullable = false)
-	private Character tipo;
+	@Enumerated(EnumType.STRING)
+	private TipoUsuario tipoUsuario;
 
 	@Column(nullable = false)
 	private Boolean ativo;
@@ -39,29 +44,6 @@ public class Usuario extends GenericDomain {
 	
 	public void setSenhaSemCriptografia(String senhaSemCriptografia) {
 		this.senhaSemCriptografia = senhaSemCriptografia;
-	}
-
-	public Character getTipo() {
-		return tipo;
-	}
-
-	@Transient
-	public String getTipoFormatado() {
-		String tipoFormatado = null;
-
-		if (tipo == 'A') {
-			tipoFormatado = "Administrador";
-		} else if (tipo == 'B') {
-			tipoFormatado = "Balconista";
-		} else if (tipo == 'G') {
-			tipoFormatado = "Gerente";
-		}
-		
-		return tipoFormatado;
-	}
-
-	public void setTipo(Character tipo) {
-		this.tipo = tipo;
 	}
 
 	public Boolean getAtivo() {
@@ -89,5 +71,13 @@ public class Usuario extends GenericDomain {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+	
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+	
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 }

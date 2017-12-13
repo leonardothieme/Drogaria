@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-24T09:18:15 -->
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-06-04T23:33:32 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="produtos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5d98eb68-fb35-4547-a217-bf15e33a41bb">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="ZHJvZ2FyaWEucHJvZHV0byAsMTUsMTUsMjgyYTcwZDYtYWMyYi00MWRhLTgxZDItZDc2Zjc2Nzli&#xA;MjYxO2Ryb2dhcmlhLmZhYnJpY2FudGUgLDE5NSw1NCw0OWVkYmFhOC02MzNkLTQ0OTctYWM5NS1i&#xA;NWIwOWU4ODQ1ZGY7"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Drogaria Data Adapter "/>
 	<parameter name="PRODUTO_DESCRICAO" class="java.lang.String"/>
 	<parameter name="FABRICANTE_DESCRICAO" class="java.lang.String"/>
+	<parameter name="CAMINHO_BANNER" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT drogaria.produto.descricao AS pdescricao,
 	drogaria.produto.preco,
@@ -34,7 +35,7 @@ ORDER BY drogaria.produto.descricao ASC,
 				<reportElement x="0" y="0" width="555" height="79" uuid="727feda0-73ba-4c27-aa2c-a431492bd3d6">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA["C:/Programação Web com Java/Workspace/Drogaria/src/main/webapp/resources/images/banner.jpg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{CAMINHO_BANNER}]]></imageExpression>
 			</image>
 		</band>
 	</title>

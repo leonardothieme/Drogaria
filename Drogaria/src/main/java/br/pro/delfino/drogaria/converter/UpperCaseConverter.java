@@ -12,7 +12,6 @@ public class UpperCaseConverter implements Converter {
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		if (value == null) {
 			return null;
-
 		} else {
 			return value.toUpperCase();
 		}
@@ -20,14 +19,10 @@ public class UpperCaseConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if(value == null) {
-			return  "";
-		}else {
+		if (value == null) {
+			return "";
+		} else {
 			return value.toString();
-			
 		}
-		}
-		
 	}
-
-
+}

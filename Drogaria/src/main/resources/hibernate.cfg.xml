@@ -10,9 +10,9 @@
 
 		<!-- Configurações de Conexão com o Banco de Dados -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://node150273-drogaria.jelasticlw.com.br/drogaria</property>
+		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/drogaria</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">VDSbfb51781</property>
+		<property name="connection.password">q1w2e3r4</property>
 
 		<!-- Pool de Conexões -->
 		<property name="connection.pool_size">1</property>
@@ -46,6 +46,7 @@
 		<mapping class="br.pro.delfino.drogaria.domain.Historico" />
 		<mapping class="br.pro.delfino.drogaria.domain.Caixa" />
 		<mapping class="br.pro.delfino.drogaria.domain.Movimentacao" />
+		<mapping class="br.pro.delfino.drogaria.domain.Menu" />
 	</session-factory>
 
 </hibernate-configuration>

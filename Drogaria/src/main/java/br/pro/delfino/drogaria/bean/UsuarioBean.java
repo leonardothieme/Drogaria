@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
 import br.pro.delfino.drogaria.dao.PessoaDAO;
@@ -51,7 +52,7 @@ public class UsuarioBean implements Serializable {
 	public void listar(){
 		try{
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			usuarios = usuarioDAO.listar("tipo");
+			usuarios = usuarioDAO.listar("tipoUsuario");
 		}catch(RuntimeException erro){
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os usuários");
 			erro.printStackTrace();
@@ -76,12 +77,12 @@ public class UsuarioBean implements Serializable {
 			usuarioDAO.merge(usuario);
 			
 			usuario = new Usuario();
-			usuarios = usuarioDAO.listar("tipo");
+			usuarios = usuarioDAO.listar("tipoUsuario");
 			
 			PessoaDAO pessoaDAO = new PessoaDAO();
 			pessoas = pessoaDAO.listar("nome");
 			
-			Messages.addGlobalInfo("Usuário salvo com sucesso");
+			Messages.addGlobalInfo(Faces.getResourceBundle("msg").getString("usuarioSalvo"));
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar o usuário");
 			erro.printStackTrace();

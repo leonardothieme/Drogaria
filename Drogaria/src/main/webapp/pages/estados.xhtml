@@ -8,6 +8,12 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	template="/templates/modelo.xhtml">
 
+	<f:metadata>
+		<f:viewParam name="codigo" value="#{estadoBean.codigoEstado}"
+			required="true" requiredMessage="Teste" />
+		<f:viewAction action="#{estadoBean.listar}" />
+	</f:metadata>
+
 	<ui:define name="conteudo">
 		<h:form id="formListagem">
 			<p:panel header="Estados - Listagem">

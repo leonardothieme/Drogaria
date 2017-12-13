@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-23T17:48:35 -->
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-06-04T23:12:43 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estados" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9066fae0-fef6-4967-877b-8c119e41e8ec">
-	<property name="com.jaspersoft.studio.data.sql.tables" value="ZHJvZ2FyaWEuZXN0YWRvIEFTICwxNzQsNzgsY2IxM2MxNDAtYzcwNS00NjJhLTg1ZWQtMTk4YjE1&#xA;Y2ZlZGU1Ow=="/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Drogaria Data Adapter "/>
 	<queryString>
 		<![CDATA[SELECT drogaria.estado.nome,
@@ -25,7 +25,7 @@ ORDER BY drogaria.estado.nome ASC]]>
 				<reportElement x="0" y="0" width="555" height="80" uuid="6f3208e9-d291-48b3-b13d-3ec9ef72cd3e">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA["C:/Programação Web com Java/Workspace/Drogaria/src/main/webapp/resources/images/banner.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["C:/Desenvolvimento/Workspace/Drogaria/src/main/webapp/resources/images/banner.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
